@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { PencilLine, Trash } from "lucide-react";
 import { type Todo } from "../services/todoApi";
+import { useTodoStore } from "../store/useTodoStore";
 
-interface SectionTowProps {
-  todos: Todo[];
-  editTodo: (id: string, updateFields: Partial<Todo>) => Promise<void>;
-  removeTodo: (id: string) => Promise<void>;
-}
-
-const SectionTow = ({ todos, editTodo, removeTodo }: SectionTowProps) => {
+const SectionTow = () => {
+  const todos = useTodoStore((state) => state.todos);
+  const editTodo = useTodoStore((state) => state.editTodo);
+  const removeTodo = useTodoStore((state) => state.removeTodo);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");

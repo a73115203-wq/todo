@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useTodoStore } from "../store/useTodoStore";
 
-interface SectionOneprop {
-  addTodo: (title: string, description: string) => Promise<void>;
-}
-const SectionOne = ({ addTodo }: SectionOneprop) => {
+
+const SectionOne = () => {
+  const addTodo = useTodoStore((state)=> state.addTodo);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
